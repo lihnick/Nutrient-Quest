@@ -44,13 +44,10 @@ function search() {
 
 			for (var i in result['item']) {
 				console.log(result['item'][i]['ndbno']);
-				stringResult += "<li class='table-view-cell' id=" + result['item'][i]['ndbno'] + "><a class='navigate-right' href='info.html' data-transition='slide-in'>" + result['item'][i]['name'].substring(0, result['item'][i]['name'].indexOf(',')) + "</a></li>";
+				stringResult += "<li class='table-view-cell' id=" + result['item'][i]['ndbno'] + "><a class='navigate-right' href='info.html' data-transition='slide-in' onclick='test(this.parentElement.id)'>" + result['item'][i]['name'].substring(0, result['item'][i]['name'].indexOf(',')) + "</a></li>";
 			}
 			document.getElementById("results").innerHTML = stringResult + "</ul>";
-			window.addEventListener('push', function(data) {
-				console.log("ABC");
-				console.log(data);
-			});
+
 		})
 		.fail(function() {
 			console.log("Failed");
@@ -58,7 +55,11 @@ function search() {
 		.always(function() {
 			console.log("Final Check");
 		});
-
 	}
+}
+
+
+function test(id) {
+	console.log(id);
 }
 
