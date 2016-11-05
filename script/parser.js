@@ -94,20 +94,21 @@ function test(id) {
 
 		stringNutrition = "<ul class='table-view'>";
 		for (var i in nutrition['item']) {
-			for (var j in nutrition['item'][i]) {
-				stringNutrition += "<li class='table-view-cell media'><a class='navigate-right'><div class='media-body'>" + nutrition['item'][i]['name'].substring(0, nutrition['item'][i]['name'].indexOf(',') ) + "<br>" + nutrition['item'][i]['measure'] + "<p>";
-				for (var k in nutrition['item'][i]['nutrients'][j]) {
-					if (nutrition['item'][i]['nutrients'][j]['gm'] == "--") {
-						continue;
-					}else {
-						stringNutrition += nutrition['item'][i]['nutrients'][j]['nutrient'] + ": " + nutrition['item'][i]['nutrients'][j]['gm'] + " " + nutrition['item'][i]['nutrients'][j]['unit'];
-					}
-				}
-				stringNutrition += "</p></div></a><li>";
+			stringNutrition += "<li class='table-view-cell media'><a class='navigate-right'><div class='media-body'>" + nutrition['item'][i]['name'].substring(0, nutrition['item'][i]['name'].indexOf(',') ) + "<br>" + nutrition['item'][i]['measure'] + "<p>";
+			for (var j in nutrition['item'][i]['nutrients']) {
+				stringNutrition += nutrition['item'][i]['nutrients'][j]['nutrient'] + ": " + nutrition['item'][i]['nutrients'][j]['gm'] + " " + nutrition['item'][i]['nutrients'][j]['unit'] + "<br>";
+				// if (nutrition['item'][i]['nutrients'][j]['gm'] == "--") {
+				// 	console.log(i + ":" + j + ":" + k);
+				// 	continue;
+				// }else {
+				// 	console.log(i + ":" + j + ":" + k);
+				// 	stringNutrition += nutrition['item'][i]['nutrients'][j]['nutrient'] + ": " + nutrition['item'][i]['nutrients'][j]['gm'] + " " + nutrition['item'][i]['nutrients'][j]['unit'];
+				// }
 			}
+			stringNutrition += "</p></div></a><li>";
 		}
 		document.getElementById("results").innerHTML = stringNutrition + "</ul>";
-		document.getElementById("backBtn").innerHTML = "<button class='btn pull-left' onclick='backBtn()'>Back</button>";
+		document.getElementById("backBtn").innerHTML = "<button class='btn pull-left' onclick='backBtn()'>Back</button>"
 
 	})
 	.fail(function() {
@@ -124,4 +125,3 @@ function backBtn() {
 	document.getElementById("results").innerHTML = stringResult;
 	document.getElementById("backBtn").innerHTML = "";
 }
-
