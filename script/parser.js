@@ -138,7 +138,6 @@ function visualize()
 
 function removeFromCart()
 {
-
 		stringNutrition = "<ul class='table-view'>";
 		for (var i in basket) {
 				// console.log(basket[i]['item'][0]['name'].substring(0, basket[i]['item'][0]['name'].indexOf(',') ) );
@@ -151,6 +150,7 @@ function removeFromCart()
 		}
 		document.getElementById("results").innerHTML = stringNutrition + "</ul>";
 		document.getElementById("backBtn").innerHTML = "<button class='btn pull-left' onclick='backBtn()'>Back</button>"
+		removeFromCart();
 }
 
 
