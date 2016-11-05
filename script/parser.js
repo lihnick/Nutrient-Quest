@@ -12,7 +12,7 @@ var page = 0;
 var stringResult;
 var nutrition = {};
 var stringNutrition;
-var basket = {};
+var basket = [];
 
 
 function search() {
@@ -92,7 +92,7 @@ function test(id) {
 	})
 	.done(function() {
 
-		stringNutrition = "<div style = 'text-align: center'><span >Add to Cart<\span><span class='icon icon-check'></span><span>Remove from Cart<\span><span class='icon icon-close'></span></div><ul class='table-view'>";
+		stringNutrition = "<div style = 'text-align: center'><button onclick='addToCart()'<span>Add to Cart<\span><span class='icon icon-check'></span></button><button onclick='removeFromCart()'><span>Remove from Cart<\span><span class='icon icon-close'></button></span></div><ul class='table-view'>";
 		for (var i in nutrition['item']) {
 			stringNutrition += "<li class='table-view-cell media'><a class='navigate-right'><div class='media-body'>" + nutrition['item'][i]['name'].substring(0, nutrition['item'][i]['name'].indexOf(',') ) + "<br>" + nutrition['item'][i]['measure'] + "<p>";
 			for (var j in nutrition['item'][i]['nutrients']) {
@@ -124,4 +124,31 @@ function test(id) {
 function backBtn() {
 	document.getElementById("results").innerHTML = stringResult;
 	document.getElementById("backBtn").innerHTML = "";
+}
+
+function addToCart()
+{
+	basket.push(JSON.parse(JSON.stringify(nutrition)));
+}
+
+function visualize()
+{
+	console.log(basket); 
+}
+
+function removeFromCart()
+{
+
+		stringNutrition = "<ul class='table-view'>";
+		for (var i in basket) {
+			console.log(basket[i]['item']['name'].substring(0, basket['item'][i]['name'].indexOf(',') ) );
+			stringNutrition += "<li class='table-view-cell media'><a class='navigate-right'><div class='media-body'>" + basket['item'][i]['name'].substring(0, basket['item'][i]['name'].indexOf(',') ) + "<br>" + basket['item'][i]['measure'] + "<p>";
+			for (var j in basket[i]['item']) {
+				stringNutrition += basket[i]['item'][j]['nutrients']['nutrient'] + ": " + basket['item'][i]['nutrients'][j]['gm'] + " " + basket['item'][i]['nutrients'][j]['unit'] + "<br>";
+			}
+			stringNutrition += "</p></div></a><li>";
+
+		}
+		document.getElementById("results").innerHTML = stringNutrition + "</ul>";
+		document.getElementById("backBtn").innerHTML = "<button class='btn pull-left' onclick='backBtn()'>Back</button>"
 }
