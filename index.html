@@ -5,14 +5,14 @@
 		<title>Untitled</title>
 
 		<script type="text/javascript" src="script/jquery.min.js"></script>
-		<script type="text/javascript" src="script/angular.min.js"></script>
+		<!-- <script type="text/javascript" src="script/angular.min.js"></script> -->
 		<script type="text/javascript" src="script/parser.js"></script>
 	</head>
 	 <!-- Body tag augmented with ngController directive  -->
 	<body>
 
 		<label>Seach: <input id="searchBar", value="", placeholder="Food"></label><!-- <br> -->
-		<input type="submit" value="Submit" onClick="seach()">
+		<input type="submit" value="Submit" onClick="search()">
 		<label>Order By:</label>
 		<select id="sortID">
 			<option value="n" selected>Name</option> 
@@ -21,10 +21,10 @@
 
    		<script type="text/javascript">
 
-   			function seach() {
-   				console.log("getting info on " + document.getElementById("sortID").value);
-   				console.log("getting info on " + document.getElementById("searchBar").value);
-   			}
+   			// function seach() {
+   			// 	console.log("getting info on " + document.getElementById("sortID").value);
+   			// 	console.log("getting info on " + document.getElementById("searchBar").value);
+   			// }
 
    		</script>
  	</body>

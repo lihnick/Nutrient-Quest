@@ -5,15 +5,38 @@ var sortByName = (sort) => "&sort=" + sort;
 var displayN = (num) => "&max=" + num;
 var offsetData = (num) => "&offset=" + num;
 
+var result = {}; // stores the search result 
+var tmp; // use for testing, temporary variable
+var showN = 25;
+var page = 0;
+
+http://api.nal.usda.gov/ndb/search/?format=json&q=butter&sort=n&max=25&offset=0&api_key=DEMO_KEY
 
 function search() {
-	var url = urlRef + document.getElementById("searchBar").value + sortByName(document.getElementById("sortID").value) + displayN("25") + offsetData("0") + apiKey;
+	var url = urlRef + document.getElementById("searchBar").value + sortByName(document.getElementById("sortID").value) + displayN(showN) + offsetData(page) + apiKey;
+	console.log(url);
 	$.getJSON(url, function(data) {
 		console.log(data);
+		tmp = data.list;
+
+		result['total'] = data.list.total;
+		result['start'] = page; // page is used because data.list.start will always be 0
+		result['end'] = data.list.end + page; // data.list.end is the length of the dataset + page will produce the offset
+		result['sort'] = data.list.sort;
+
+		result['item'] = [];
+		for (var i in data.list.item) {
+			result['item'].push({
+				offset: data.list.item[i].offset,
+				group: data.list.item[i].group,
+				name: data.list.item[i].name
+			});
+		}
 
 	})
 	.done(function() {
 		console.log("Successful");
+		// display more buttons if there are more values
 	})
 	.fail(function() {
 		console.log("Failed");
