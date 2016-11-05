@@ -11,7 +11,6 @@ var showN = 25;
 var page = 0;
 var stringResult;
 
-http://api.nal.usda.gov/ndb/search/?format=json&q=butter&sort=n&max=25&offset=0&api_key=DEMO_KEY
 
 function search() {
     if (event.keyCode == 13) {
@@ -41,8 +40,9 @@ function search() {
 			console.log("Successful");
 			// display more buttons if there are more values
 			stringResult = "<ul class='table-view'>";
+
 			for (var i in result['item']) {
-				stringResult += "<li class='table-view-cell'><a class='navigate-right' href='info.html' data-transition='slide-in'>" + result['item'][i]['name'].substring(0, result['item'][i]['name'].indexOf(',')) + "</a></li>";
+				stringResult += "<li class='table-view-cell'><a class='navigate-right' href='info.html' data-transition='slide-in'> value=" + result['item'][i]['ndbno'] + "" + result['item'][i]['name'].substring(0, result['item'][i]['name'].indexOf(',')) + "</a></li>";
 			}
 			document.getElementById("results").innerHTML = stringResult + "</ul>";
 		})
