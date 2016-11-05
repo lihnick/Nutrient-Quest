@@ -92,7 +92,7 @@ function test(id) {
 	})
 	.done(function() {
 
-		stringNutrition = "<ul class='table-view'>";
+		stringNutrition = "<div style = 'cotext-align: center'><span >Add to Cart<\span><span class='icon icon-check'></span><span>Remove from Cart<\span><span class='icon icon-close'></span></div><ul class='table-view'>";
 		for (var i in nutrition['item']) {
 			stringNutrition += "<li class='table-view-cell media'><a class='navigate-right'><div class='media-body'>" + nutrition['item'][i]['name'].substring(0, nutrition['item'][i]['name'].indexOf(',') ) + "<br>" + nutrition['item'][i]['measure'] + "<p>";
 			for (var j in nutrition['item'][i]['nutrients']) {
