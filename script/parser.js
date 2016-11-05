@@ -40,11 +40,11 @@ function search() {
 		.done(function() {
 			console.log("Successful");
 			// display more buttons if there are more values
-			
+			stringResult = "<ul class='table-view'>";
 			for (var i in result['item']) {
-				stringResult += "<p>" + result['item'][i]['name'].substring(0, result['item'][i]['name'].indexOf(',')) + "</p>";
+				stringResult += "<li class='table-view-cell'><a class='navigate-right'>" + result['item'][i]['name'].substring(0, result['item'][i]['name'].indexOf(',')) + "</a></li>";
 			}
-			document.getElementById("results").innerHTML = stringResult;
+			document.getElementById("results").innerHTML = stringResult + "</ul>";
 		})
 		.fail(function() {
 			console.log("Failed");
