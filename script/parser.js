@@ -14,7 +14,7 @@ var stringResult;
 
 function search() {
     if (event.keyCode == 13) {
-
+    	
 		var url = urlRef + document.getElementById("searchBar").value + sortByName(document.getElementById("sortID").value) + displayN(showN) + offsetData(page) + apiKey;
 		console.log(url);
 		$.getJSON(url, function(data) {

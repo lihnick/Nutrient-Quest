@@ -19,7 +19,7 @@
 		<!-- Include Other Scripts -->
 		<script type="text/javascript" src="script/jquery.min.js"></script>
 		<script type="text/javascript" src="script/parser.js"></script>
-	
+		
 	</head>
 	<body>
 		<!-- Make sure all your bars are the first things in your <body> -->
@@ -33,8 +33,34 @@
 					<a class="icon icon-close pull-right" href="#moreInfoModal"></a>
 					<h1 class="title">Food Nutrient</h1>
 				</header>
-				<div class="content">
-					<p class="content-padded">Bacon ipsum dolor amet kielbasa chuck tongue burgdoggen. Shankle beef ribs tri-tip brisket turducken, ham beef swine spare ribs pastrami. Pastrami meatloaf kevin frankfurter corned beef, jerky tenderloin drumstick landjaeger capicola pork loin ball tip. Chuck shoulder t-bone andouille. Biltong burgdoggen hamburger short loin chicken porchetta.</p>
+				<div id="content" class="content">
+					<script src="script/three.min.js"></script>
+					<script>
+					var scene = new THREE.Scene();
+					var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+
+					var renderer = new THREE.WebGLRenderer();
+					renderer.setSize( window.innerWidth, window.innerHeight );
+					document.body.appendChild( renderer.domElement );
+
+					var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+					var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+					var cube = new THREE.Mesh( geometry, material );
+					scene.add( cube );
+
+					camera.position.z = 5;
+
+					var render = function () {
+						requestAnimationFrame( render );
+
+						cube.rotation.x += 0.01;
+						cube.rotation.y += 0.01;
+
+						renderer.render(scene, camera);
+					};
+
+					render();
+					</script>
   				</div>
 			</div>
 			<h1 class="title">Basket</h1>
