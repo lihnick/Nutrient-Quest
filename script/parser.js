@@ -1,7 +1,6 @@
 var apiKey = "&api_key=lnpVL48QKRvh2kyG4IpDzgCqv5cJQVU8pPsRKMLP";
 var urlRef = "https://api.nal.usda.gov/ndb/search/?format=json&q=";
-var urlRef2= "https://api.nal.usda.gov/ndb/nutrients/?format=json&nutrients=205&nutrients=203&nutrients=204&nutrients=208&nutrients=221&nutrients=601&nutrients=291&nutrients=269&nutrients=268"; 
-
+var urlRef2= "https://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=" + apiKey + "&nutrients=205&nutrients=203&nutrients=204&nutrients=208&nutrients=221&nutrients=601&nutrients=291&nutrients=269&nutrients=268"; 
 var sortByName = (sort) => "&sort=" + sort;
 var displayN = (num) => "&max=" + num;
 var offsetData = (num) => "&offset=" + num;
@@ -66,7 +65,7 @@ function search() {
 
 function test(id) {
 	console.log(id);
-	var url = urlRef2 + "&ndbno=" + id; 
+	var url = urlRef2 + "&ndbno=" + id + ""; 
 	console.log(url);
 	$.getJSON(url, function(data){
 		console.log(data);
