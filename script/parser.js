@@ -1,5 +1,5 @@
 var apiKey = "&api_key=lnpVL48QKRvh2kyG4IpDzgCqv5cJQVU8pPsRKMLP";
-var urlRef = "http://api.nal.usda.gov/ndb/search/?format=json&q=";
+var urlRef = "https://api.nal.usda.gov/ndb/search/?format=json&q=";
 
 var sortByName = (sort) => "&sort=" + sort;
 var displayN = (num) => "&max=" + num;
