@@ -42,9 +42,10 @@ function search() {
 			// display more buttons if there are more values
 			stringResult = "<ul class='table-view'>";
 
+			// handlebars
 			for (var i in result['item']) {
 				console.log(result['item'][i]['ndbno']);
-				stringResult += "<li class='table-view-cell' id=" + result['item'][i]['ndbno'] + "><a class='navigate-right' href='info.html' data-transition='slide-in' onclick='test(this.parentElement.id)'>" + result['item'][i]['name'].substring(0, result['item'][i]['name'].indexOf(',')) + "</a></li>";
+				stringResult += "<li class='table-view-cell' id=" + result['item'][i]['ndbno'] + "><a class='navigate-right' onclick='test(this.parentElement.id)'>" + result['item'][i]['name'].substring(0, result['item'][i]['name'].indexOf(',')) + "</a></li>";
 			}
 			document.getElementById("results").innerHTML = stringResult + "</ul>";
 
