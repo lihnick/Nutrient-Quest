@@ -150,11 +150,11 @@ function removeFromCart()
 		}
 		document.getElementById("results").innerHTML = stringNutrition + "</ul>";
 		document.getElementById("backBtn").innerHTML = "<button class='btn pull-left' onclick='backBtn()'>Back</button>"
-		removeFromCart();
 }
 
 
 function removeItem(id) {
 	basket.splice(id, id+1);
+	removeFromCart();
 }
 
