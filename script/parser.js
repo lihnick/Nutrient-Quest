@@ -42,7 +42,7 @@ function search() {
 			// display more buttons if there are more values
 			stringResult = "<ul class='table-view'>";
 			for (var i in result['item']) {
-				stringResult += "<li class='table-view-cell'><a class='navigate-right'>" + result['item'][i]['name'].substring(0, result['item'][i]['name'].indexOf(',')) + "</a></li>";
+				stringResult += "<li class='table-view-cell'><a class='navigate-right' href='info.html' data-transition='slide-in'>" + result['item'][i]['name'].substring(0, result['item'][i]['name'].indexOf(',')) + "</a></li>";
 			}
 			document.getElementById("results").innerHTML = stringResult + "</ul>";
 		})
