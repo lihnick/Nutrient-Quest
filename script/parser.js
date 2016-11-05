@@ -69,20 +69,17 @@ function test(id) {
 	$.getJSON(url, function(data){
 		console.log(data);
 		tmp = data;
-
-			nutrition['item'] = [];
-			for (var i in data.report.foods) {
-				nutrition['item'].push({
-					name: data.report.foods[i].name,
-					ndbno: data.report.foods[i].ndbno,
-					weight: data.report.foods[i].weight,
-					measure: data.report.foods[i].measure,
-					nutrients: []
-				});
-				
-				for (var j in data.report.foods[i].nutrients) {
-					
-					nutrition['item'][i]['nutrients'].push({
+		nutrition['item'] = [];
+		for (var i in data.report.foods) {
+			nutrition['item'].push({
+				name: data.report.foods[i].name,
+				ndbno: data.report.foods[i].ndbno,
+				weight: data.report.foods[i].weight,
+				measure: data.report.foods[i].measure,
+				nutrients: []
+			});
+			for (var j in data.report.foods[i].nutrients) {
+				nutrition['item'][i]['nutrients'].push({
 					id: data.report.foods[i].nutrients[j].nutrient_id,
 					nutrient: data.report.foods[i].nutrients[j].nutrient,
 					unit: data.report.foods[i].nutrients[j].unit,
@@ -90,8 +87,16 @@ function test(id) {
 					value: data.report.foods[i].nutrients[j].value
 				});	
 			}
-		
-			}
+		}
 	})
+	.done(function() {
+		
+	})
+	.fail(function() {
+		console.log("Failed");
+	})
+	.always(function() {
+		console.log("Final Check");
+	});
 
 }
