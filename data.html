@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Untitled</title>
+		<!-- Sets initial viewport load and disables zooming  -->
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+		<!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!-- Include the compiled Ratchet CSS -->
+		<link href="css/ratchet.min.css" rel="stylesheet">
+
+		<!-- Include the compiled Ratchet JS -->
+		<script src="js/ratchet.min.js"></script>
+
+		<!-- Include Other Scripts -->
+		<script type="text/javascript" src="script/jquery.min.js"></script>
+		<script type="text/javascript" src="script/parser.js"></script>
+	
+	</head>
+	<body>
+		<!-- Make sure all your bars are the first things in your <body> -->
+		<header class="bar bar-nav">
+			<!-- left side menu search bar -->
+			<!-- <button class="btn pull-left">Search</button> -->
+			<!-- left more info popup -->
+			<a href="#moreInfoModal" class="btn pull-left">Visualize</a>
+			<div id="moreInfoModal" class="modal">
+				<header class="bar bar-nav">
+					<a class="icon icon-close pull-right" href="#moreInfoModal"></a>
+					<h1 class="title">Food Nutrient</h1>
+				</header>
+				<div class="content">
+					<p class="content-padded">Bacon ipsum dolor amet kielbasa chuck tongue burgdoggen. Shankle beef ribs tri-tip brisket turducken, ham beef swine spare ribs pastrami. Pastrami meatloaf kevin frankfurter corned beef, jerky tenderloin drumstick landjaeger capicola pork loin ball tip. Chuck shoulder t-bone andouille. Biltong burgdoggen hamburger short loin chicken porchetta.</p>
+  				</div>
+			</div>
+			<h1 class="title">Basket</h1>
+		</header>
+
+		<!-- inputs -->
+		<div class="bar bar-standard bar-header-secondary">
+			<input id="searchBar" type="search" placeholder="Search" onkeydown="search()">
+			<select id="sortID" type="button">
+			<option value="n" selected>Name</option> 
+			<option value="r" >Relevance</option>
+			</select>
+		</div>
+		
+		<div id="results"></div>
+
+ 	</body>
+</html>
+
+
+<!-- Program Flow
+
+Inputs given in the Search Bar and users presses enter
+The search() function is called 
+	With the searchBar variable get the Nutritional information with the variable using the api call
+	parse the data into a formatted json object
+	display the data with angularjs
+
+
+
+
+ -->
