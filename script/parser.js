@@ -141,14 +141,20 @@ function removeFromCart()
 
 		stringNutrition = "<ul class='table-view'>";
 		for (var i in basket) {
-			console.log(basket[i]['item']['name'].substring(0, basket['item'][i]['name'].indexOf(',') ) );
-			stringNutrition += "<li class='table-view-cell media'><a class='navigate-right'><div class='media-body'>" + basket['item'][i]['name'].substring(0, basket['item'][i]['name'].indexOf(',') ) + "<br>" + basket['item'][i]['measure'] + "<p>";
-			for (var j in basket[i]['item']) {
-				stringNutrition += basket[i]['item'][j]['nutrients']['nutrient'] + ": " + basket['item'][i]['nutrients'][j]['gm'] + " " + basket['item'][i]['nutrients'][j]['unit'] + "<br>";
+				// console.log(basket[i]['item'][0]['name'].substring(0, basket[i]['item'][0]['name'].indexOf(',') ) );
+				stringNutrition += "<li class='table-view-cell media'><a class='navigate-right'><div class='media-body'>" + basket[i]['item'][0]['name'].substring(0, basket[i]['item'][0]['name'].indexOf(',') ) + "<br>" + basket[i]['item'][0]['measure'] + "<p>";
+			for (var j in basket[i]['item'][0]['nutrients']) {
+				stringNutrition += basket[i]['item'][0]['nutrients'][j]['nutrient'] + ": " + basket[i]['item'][0]['nutrients'][j]['gm'] + " " + basket[i]['item'][0]['nutrients'][j]['unit'] + "<br>";
 			}
-			stringNutrition += "</p></div></a><li>";
+			stringNutrition += "</p></div></a><button class='btn btn-negative' onClick='removeItem(this.value)' value="+i+">Remove</button><li>";
 
 		}
 		document.getElementById("results").innerHTML = stringNutrition + "</ul>";
 		document.getElementById("backBtn").innerHTML = "<button class='btn pull-left' onclick='backBtn()'>Back</button>"
 }
+
+
+function removeItem(id) {
+	basket.splice(id, id+1);
+}
+
