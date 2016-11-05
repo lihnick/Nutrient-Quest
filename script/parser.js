@@ -31,7 +31,8 @@ function search() {
 				result['item'].push({
 					offset: data.list.item[i].offset,
 					group: data.list.item[i].group,
-					name: data.list.item[i].name
+					name: data.list.item[i].name,
+					ndbno: data.list.item[i].ndbno
 				});
 			}
 
@@ -42,10 +43,12 @@ function search() {
 			stringResult = "<ul class='table-view'>";
 
 			for (var i in result['item']) {
-				stringResult += "<li class='table-view-cell'><a class='navigate-right' href='info.html' data-transition='slide-in'> ndbno=" + result['item'][i]['ndbno'] + "" + result['item'][i]['name'].substring(0, result['item'][i]['name'].indexOf(',')) + "</a></li>";
+				console.log(result['item'][i]['ndbno']);
+				stringResult += "<li class='table-view-cell' id=" + result['item'][i]['ndbno'] + "><a class='navigate-right' href='info.html' data-transition='slide-in'>" + result['item'][i]['name'].substring(0, result['item'][i]['name'].indexOf(',')) + "</a></li>";
 			}
 			document.getElementById("results").innerHTML = stringResult + "</ul>";
 			window.addEventListener('push', function(data) {
+				console.log("ABC");
 				console.log(data);
 			});
 		})
