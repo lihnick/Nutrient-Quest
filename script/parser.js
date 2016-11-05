@@ -45,6 +45,9 @@ function search() {
 				stringResult += "<li class='table-view-cell'><a class='navigate-right' href='info.html' data-transition='slide-in'> value=" + result['item'][i]['ndbno'] + "" + result['item'][i]['name'].substring(0, result['item'][i]['name'].indexOf(',')) + "</a></li>";
 			}
 			document.getElementById("results").innerHTML = stringResult + "</ul>";
+			window.addEventListener('push', function(data) {
+				console.log(data);
+			});
 		})
 		.fail(function() {
 			console.log("Failed");
