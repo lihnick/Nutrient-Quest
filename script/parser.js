@@ -12,6 +12,8 @@ var showN = 25;
 var page = 0;
 var stringResult;
 var nutrition = {};
+var stringNutrition;
+var basket = {};
 
 
 function search() {
@@ -90,7 +92,24 @@ function test(id) {
 		}
 	})
 	.done(function() {
-		
+
+		stringNutrition = "<ul class='table-view'>";
+		for (var i in nutrition['item']) {
+			for (var j in nutrition['item'][i]) {
+				stringNutrition += "<li class='table-view-cell media'><a class='navigate-right'><div class='media-body'>" + nutrition['item'][i]['name'].substring(0, nutrition['item'][i]['name'].indexOf(',') ) + "<br>" + nutrition['item'][i]['measure'] + "<p>";
+				for (var k in nutrition['item'][i]['nutrients'][j]) {
+					if (nutrition['item'][i]['nutrients'][j]['gm'] == "--") {
+						continue;
+					}else {
+						stringNutrition += nutrition['item'][i]['nutrients'][j]['nutrient'] + ": " + nutrition['item'][i]['nutrients'][j]['gm'] + " " + nutrition['item'][i]['nutrients'][j]['unit'];
+					}
+				}
+				stringNutrition += "</p></div></a><li>";
+			}
+		}
+		document.getElementById("results").innerHTML = stringNutrition + "</ul>";
+		document.getElementById("backBtn").innerHTML = "<button class='btn pull-left' onclick='backBtn()'>Back</button>"
+
 	})
 	.fail(function() {
 		console.log("Failed");
@@ -99,4 +118,10 @@ function test(id) {
 		console.log("Final Check");
 	});
 
+}
+
+
+function backBtn() {
+	document.getElementById("results").innerHTML = stringResult;
+	document.getElementById("backBtn").innerHTML = "";
 }
