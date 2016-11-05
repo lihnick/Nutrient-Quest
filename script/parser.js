@@ -107,7 +107,7 @@ function test(id) {
 			}
 		}
 		document.getElementById("results").innerHTML = stringNutrition + "</ul>";
-		document.getElementById("backBtn").innerHTML = "<button class='btn pull-left' onclick='backBtn()'>Back</button>"
+		document.getElementById("backBtn").innerHTML = "<button class='btn pull-left' onclick='backBtn()'>Back</button>";
 
 	})
 	.fail(function() {
