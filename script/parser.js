@@ -99,7 +99,7 @@ function test(id) {
 		}
 	})
 	.done(function() {
-		if (document.getElementById("searchBar").value in images) {
+		if (document.getElementById("searchBar").value.toLowerCase() in images) {
 			nutrition['name'] = document.getElementById("searchBar").value.toLowerCase();
 		} else {
 			delete nutrition["name"];
