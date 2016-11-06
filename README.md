@@ -20,4 +20,4 @@ https://api.data.gov/nrel/alt-fuel-stations/v1/nearest.json?api_key=lnpVL48QKRvh
 
 API References
 https://ndb.nal.usda.gov/ndb/doc/apilist/API-NUTRIENT-REPORT.md
-
+https://ndb.nal.usda.gov/ndb/doc/apilist/API-SEARCH.md
