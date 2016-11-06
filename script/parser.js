@@ -13,7 +13,13 @@ var stringResult;
 var nutrition = {};
 var stringNutrition;
 var basket = [];
+var images = {};
+var visual = [];
+var stringVisual;
 
+$.getJSON("imgSrc.json", function(data) {
+	images = data;
+});	
 
 function search() {
     if (event.keyCode == 13) {
@@ -91,7 +97,11 @@ function test(id) {
 		}
 	})
 	.done(function() {
-
+		if (document.getElementById("searchBar").value in images) {
+			nutrition['name'] = document.getElementById("searchBar").value;
+		} else {
+			delete nutrition["name"];
+		}
 		stringNutrition = "<div style = 'text-align: center'><button onclick='addToCart()'<span>Add to Cart<\span><span class='icon icon-check'></span></button><button onclick='removeFromCart()'><span>Remove from Cart<\span><span class='icon icon-close'></button></span></div><ul class='table-view'>";
 		for (var i in nutrition['item']) {
 			stringNutrition += "<li class='table-view-cell media'><a class='navigate-right'><div class='media-body'>" + nutrition['item'][i]['name'].substring(0, nutrition['item'][i]['name'].indexOf(',') ) + "<br>" + nutrition['item'][i]['measure'] + "<p>";
@@ -129,11 +139,30 @@ function backBtn() {
 function addToCart()
 {
 	basket.push(JSON.parse(JSON.stringify(nutrition)));
+	visualize()
 }
 
 function visualize()
 {
-	console.log(basket); 
+	stringVisual = "<ul class='table-view'>";
+	visual = [];
+	for (var i in basket) {
+		if (basket[i]['name'] === null) {
+			continue;
+		}
+		else {
+			visual.push(basket[i]);
+		}
+	}
+	for (var i in visual) {
+		console.log("<li class='table-view-cell media'><a class='navigate-right'><img class='media-object pull-left' src=" + images[visual[i]['name']] + " style='width:128px;height:128px;'><div class='media-body'>" + visual[i]['item'][0]['name'] + "</div></a></li>");
+		stringVisual += "<li class='table-view-cell media'><a class='navigate-right'><img class='media-object pull-left' src=" + images[visual[i]['name']] + " style='width:128px;height:128px;'><div class='media-body'><strong>" + visual[i]['item'][0]['name'] + "</strong>";
+		for (var j in visual[i]['item'][0]['nutrients']){
+			stringVisual += "<p>" + visual[i]['item'][0]['nutrients'][j]['nutrient'] + ": " + visual[i]['item'][0]['nutrients'][j]['gm'] + " " + visual[i]['item'][0]['nutrients'][j]['unit'] + "</p>";
+		}
+		stringVisual += "</div></a></li>";
+	}
+	document.getElementById('dataVisual').innerHTML = stringVisual + "</ul>";
 }
 
 function removeFromCart()
