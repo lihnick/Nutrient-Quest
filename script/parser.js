@@ -4,6 +4,8 @@ var urlRef2= "https://api.nal.usda.gov/ndb/nutrients/?format=json" + apiKey + "&
 var sortByName = (sort) => "&sort=" + sort;
 var displayN = (num) => "&max=" + num;
 var offsetData = (num) => "&offset=" + num;
+var actions = ["bounce", "flash", "pulse", "shake", "jello", "swing", "tada", "wobble", "rubberBand"];
+var getAction = () => actions[Math.floor(Math.random()*actions.length)];
 
 var result = {}; // stores the search result 
 var tmp; // use for testing, temporary variable
@@ -156,7 +158,7 @@ function visualize()
 	}
 	for (var i in visual) {
 		console.log("<li class='table-view-cell media'><a class='navigate-right'><img class='media-object pull-left' src=" + images[visual[i]['name']] + " style='width:128px;height:128px;'><div class='media-body'>" + visual[i]['item'][0]['name'] + "</div></a></li>");
-		stringVisual += "<li class='table-view-cell media'><a class='navigate-right'><img class='media-object pull-left' src=" + images[visual[i]['name']] + " style='width:128px;height:128px;'><div class='media-body'><strong>" + visual[i]['item'][0]['name'] + "</strong>";
+		stringVisual += "<li class='table-view-cell media'><a class='navigate-right'><img class='media-object pull-left' src=" + images[visual[i]['name']] + " style='width:128px;height:128px;' onclick='move()'><div class='media-body'><strong>" + visual[i]['item'][0]['name'] + "</strong>";
 		for (var j in visual[i]['item'][0]['nutrients']){
 			stringVisual += "<p>" + visual[i]['item'][0]['nutrients'][j]['nutrient'] + ": " + visual[i]['item'][0]['nutrients'][j]['gm'] + " " + visual[i]['item'][0]['nutrients'][j]['unit'] + "</p>";
 		}
@@ -186,4 +188,16 @@ function removeItem(id) {
 	basket.splice(id, id+1);
 	removeFromCart();
 }
+
+function move() {
+	var animationName = getAction();
+	console.log(animationName);
+	$('img.media-object').on('click', function() {
+		var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+		$('img').addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).removeClass('animated ' + animationName);
+        });
+	});
+}
+
 
